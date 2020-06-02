@@ -15,7 +15,7 @@ from pandas import Series, DataFrame
 
 #pygame.init()
 #pygame.display.set_caption('JARVIS')
-app_id = "WV9JUA-T832TW87JK"
+app_id = "wolframalpha id"
 chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(chrome_path),1)
 #dis=pygame.display.set_mode((800, 400))
@@ -220,9 +220,9 @@ def tasks(command):
                 
         elif 'send' in command and 'email' in command:
             msg = MIMEMultipart() 
-            user='ksun5@ocdsb.ca'
+            user=#your email
             speak('who do i send the email to?')
-            to=listening()+'@ocdsb.ca'
+            to=listening()
             msg['From']=user
             msg['To']=to
             speak("what's the subject of the email")
@@ -232,7 +232,7 @@ def tasks(command):
             msg.attach(MIMEText(body, 'plain'))
             s = smtplib.SMTP('smtp.gmail.com', 587) 
             s.starttls() 
-            password= '2048494729'
+            password= #your password
             s.login(user, password)
             text = msg.as_string() 
             s.sendmail(user, to, text) 
@@ -255,12 +255,12 @@ def tasks(command):
                 words.remove('song')
             command=' '.join(words)
             query_string = urllib.parse.urlencode({"search_query" : command+' music'})
-            html_content = urllib.request.urlopen("http://www.music.youtube.com/results?" + query_string)
+            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
             search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
             try:
-                webbrowser.get('chrome').open_new_tab("http://www.music.youtube.com/watch?v=" + search_results[0])
+                webbrowser.get('chrome').open_new_tab("http://www.youtube.com/watch?v=" + search_results[0])
             except:
-                webbrowser.get('chrome').open_new("http://www.music.youtube.com/watch?v=" + search_results[0])
+                webbrowser.get('chrome').open_new("http://www.youtube.com/watch?v=" + search_results[0])
             outfile = open('music_list','wb')
             music_list.append(command)
             pickle.dump(music_list, outfile)
@@ -273,12 +273,12 @@ def tasks(command):
             infile.close()
             song=random.choice(music_list)
             query_string = urllib.parse.urlencode({"search_query" : song})
-            html_content = urllib.request.urlopen("http://www.music.youtube.com/results?" + query_string)
+            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
             search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
             try:
-                webbrowser.get('chrome').open_new_tab("http://www.music.youtube.com/watch?v=" + search_results[0])
+                webbrowser.get('chrome').open_new_tab("http://www.youtube.com/watch?v=" + search_results[0])
             except:
-                webbrowser.get('chrome').open_new("http://www.music.youtube.com/watch?v=" + search_results[0])
+                webbrowser.get('chrome').open_new("http://www.youtube.com/watch?v=" + search_results[0])
             speak("i'm done!")
         
         elif "coin" in command and 'flip' in command:
