@@ -289,7 +289,7 @@ def tasks(command):
             speak('You rolled ' + str(random.randint(1, 6)))
         
         elif 'weather' in command:
-            owm = pyowm.OWM('3820e101d369089c44c3466b18e5690e')
+            owm = pyowm.OWM('your api key')
             if 'in' in command:
                 words=command.split()
                 place=' '.join(words[words.index('in')+1:])
